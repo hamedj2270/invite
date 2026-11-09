@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>یه دعوت کوچولو ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap');
+:root{--green:#173f32;--green2:#215846;--cream:#fffdf5;--yellow:#ffd447;--red:#e6535e}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Vazirmatn,Tahoma,sans-serif}
+body{
+  min-height:100vh;background:var(--green);color:var(--cream);
+  background-image:radial-gradient(var(--green2) 2px,transparent 2px);
+  background-size:26px 26px;overflow-x:hidden
+}
+main{max-width:620px;margin:auto;padding:50px 22px 80px;text-align:center}
+.stamp{display:inline-block;transform:rotate(-5deg);border:3px solid var(--red);
+color:var(--red);background:var(--cream);font-weight:900;padding:3px 16px;
+border-radius:8px;font-size:17px}
+h1{font-size:clamp(34px,9vw,58px);line-height:1.35;margin:22px 0 8px;font-weight:900}
+h1 em{font-style:normal;color:var(--yellow)}
+.sub{font-size:19px;line-height:2;margin:0 0 30px;opacity:.92}
+.plate{font-size:86px;line-height:1;display:inline-block;animation:wob 3s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(8deg) scale(1.06)}}
+
+.choice{display:flex;justify-content:center;align-items:center;gap:16px;
+flex-wrap:wrap;min-height:125px}
+button{font-family:inherit;cursor:pointer;font-weight:900}
+#yes{background:var(--yellow);color:var(--green);border:0;font-size:20px;
+padding:14px 30px;border-radius:999px;box-shadow:0 6px 0 #c5a31d;
+transition:transform .2s}
+#yes:active{transform:translateY(4px)}
+#no{background:transparent;color:var(--cream);border:2px solid var(--cream);
+font-size:16px;padding:10px 22px;border-radius:999px;z-index:5}
+#no.run{position:fixed;transition:left .22s,top .22s}
+#hint{min-height:2em;color:var(--yellow);font-weight:700;margin-top:18px}
+
+#win{display:none;margin-top:10px}
+#win.show{display:block;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+
+.card{background:var(--cream);color:var(--green);border-radius:22px;
+padding:28px 22px;text-align:right;margin-top:22px;box-shadow:0 15px 40px #0003}
+.card h2{text-align:center;font-size:26px;margin:0 0 18px}
+.row{display:flex;gap:14px;padding:12px 0;border-top:1px dashed #b9c9bf;font-size:17px}
+.row:first-of-type{border-top:0}
+.row b{min-width:65px;color:var(--red)}
+.final{text-align:center;line-height:2;margin-top:20px}
+.fine{margin-top:30px;font-size:13px;opacity:.7}
+.fall{position:fixed;top:-40px;font-size:28px;pointer-events:none;z-index:20;
+animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+
+<body>
+<main>
+  <span class="stamp">یک دعوت ویژه 💌</span>
+
+  <h1><span id="guest">رفیق</span> جان،<br>
+  شما <em>دعوت</em> شده‌اید!</h1>
+
+  <div class="plate" aria-hidden="true">☕</div>
+
+  <p class="sub">
+    حامد یه پیشنهاد خوشمزه برات داره 😋<br>
+    پایه‌ای بریم یه کافه دو نفره؟
+  </p>
+
+  <section id="ask">
+    <div class="choice">
+      <button id="yes">باشه، میام 😍</button>
+      <button id="no">نه 😐</button>
+    </div>
+    <p id="hint" role="status"></p>
+  </section>
+
+  <section id="win">
+    <h2 style="font-size:30px;margin-bottom:8px">آفرین، انتخاب درستی بود 🎉</h2>
+
+    <div class="card">
+      <h2>قرارمون قطعی شد ❤️</h2>
+
+      <div class="row">
+        <b>کافه </b>
+        <span>نرون</span>
+      </div>
+
+      <div class="row">
+        <b>تاریخ</b>
+        <span>19 آبان</span>
+      </div>
+
+      <div class="row">
+        <b>ساعت</b>
+        <span>16:00</span>
+      </div>
+
+      <!-- <div class="row">
+        <b>غذا</b>
+        <span>چلو کباب 🍢</span>
+      </div> -->
+
+      <div class="final">
+        پس منتظرت هستم 😌<br>
+        <strong>حامد ❤️</strong>
+      </div>
+    </div>
+  </section>
+
+  <p class="fine">این دعوت‌نامه رسماً هیچ حق انصرافی ندارد 😄</p>
+</main>
+
+<script>
+const guest = new URLSearchParams(location.search).get("name");
+if (guest) document.getElementById("guest").textContent = guest;
+
+const no = document.getElementById("no");
+const yes = document.getElementById("yes");
+const hint = document.getElementById("hint");
+
+const messages = [
+  "اوه! دکمه «نه» فرار کرد 😅",
+  "بیخیال، قبول کن دیگه ❤️",
+  "این دکمه ظاهراً قصد همکاری نداره 😂",
+  "من که می‌دونم دلت می‌خواد 😏",
+  "رستوران منتظرمونه هااا 🍢",
+  "آخرین شانس... 😭"
+];
+
+let count = 0;
+
+function dodge(e){
+  if(e) e.preventDefault();
+
+  if(count >= messages.length){
+    no.textContent = "باشه خب 😭";
+    no.classList.remove("run");
+    no.style.cssText = "";
+    no.onclick = accept;
+    hint.textContent = "بالاخره تسلیم شدی! 😄";
+    return;
+  }
+
+  no.classList.add("run");
+
+  const maxX = Math.max(10, window.innerWidth - no.offsetWidth - 20);
+  const maxY = Math.max(10, window.innerHeight - no.offsetHeight - 20);
+
+  no.style.left = Math.max(10, Math.random() * maxX) + "px";
+  no.style.top = Math.max(10, Math.random() * maxY) + "px";
+
+  hint.textContent = messages[count];
+  count++;
+
+  yes.style.transform = "scale(" + Math.min(1 + count * .12, 1.8) + ")";
+}
+
+no.addEventListener("pointerenter", dodge);
+no.addEventListener("touchstart", dodge, {passive:false});
+no.addEventListener("click", dodge);
+
+function accept(){
+  document.getElementById("ask").style.display = "none";
+  document.getElementById("win").classList.add("show");
+  confetti();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+yes.addEventListener("click", accept);
+
+function confetti(){
+  const emojis=["☕","❤️","🎉","🍚","🌹","😍","✨"];
+
+  for(let i=0;i<35;i++){
+    const el=document.createElement("span");
+    el.className="fall";
+    el.textContent=emojis[i % emojis.length];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=(2+Math.random()*2.5)+"s";
+    el.style.animationDelay=Math.random()*.6+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5000);
+  }
+}
+</script>
+</body>
+</html>
